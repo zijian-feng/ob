@@ -1,0 +1,13 @@
+@layer {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0 auto;
+    min-width: 1440px;
+    background-color: $color-gray;
+  }
+}
