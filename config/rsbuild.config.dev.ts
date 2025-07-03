@@ -19,7 +19,15 @@ export default mergeRsbuildConfig(defaultConfig, {
     })
   ],
   server: {
-    open: true
+    open: true,
+    proxy: {
+      '/mxnzp-api': {
+        target: 'https://www.mxnzp.com/api',
+        pathRewrite: {
+          '^/mxnzp-api': ''
+        }
+      }
+    }
   },
   resolve: {
     alias: {

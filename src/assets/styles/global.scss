@@ -7,7 +7,13 @@
 
   body {
     margin: 0 auto;
-    min-width: 1440px;
     background-color: $color-gray;
+  }
+
+  #root {
+    display: flex;
+    .page {
+      flex: 1;
+    }
   }
 }

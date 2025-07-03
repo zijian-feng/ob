@@ -1,10 +1,16 @@
+import jaJP from './ja-JP'
 import zhCN from './zh-CN'
 import zhHK from './zh-HK'
-import jaJP from './ja-JP'
 
 
 export default {
-  'zh-CN': zhCN,
-  'zh-HK': zhHK,
-  'ja-JP': jaJP
+  'zh-CN': {
+    translation: zhCN
+  },
+  'zh-HK': {
+    translation: zhHK
+  },
+  'ja-JP': {
+    translation: jaJP
+  }
 }

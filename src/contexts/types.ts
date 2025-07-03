@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-export type IntlProviderProps = {
+export type LocaleProviderProps = {
   children: ReactNode;
 }
-
-export type Locale = 'zh-CN' | 'zh-HK' | 'ja-JP'

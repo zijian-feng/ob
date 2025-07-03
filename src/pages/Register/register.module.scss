@@ -1,0 +1,45 @@
+.register-form {
+  flex: 1;
+  position: relative;
+  background-color: $color-white;
+
+  :global {
+    .ant-form {
+      width: 100%;
+      padding: 40px;
+      max-width: 476px;
+    }
+  }
+
+  .lang {
+    position: absolute;
+    top: 27px;
+    right: 34px;
+  }
+
+  .to-kpay {
+    position: absolute;
+    bottom: 58px;
+    right: 50%;
+    transform: translateX(50%);
+    color: $color-gray-tertiary;
+  }
+}
+
+.register-layout {
+  flex: 1;
+  overflow: hidden;
+  .logo {
+    position: absolute;
+    top: 49px;
+    left: 100px;
+  }
+  .post-image {
+    position: absolute;
+    padding: 0px 32.667px 8px 203px;
+    aspect-ratio: 910.67/683.00;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+  }
+}

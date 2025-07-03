@@ -1,4 +1,4 @@
-import Login from '@/pages/Login/login'
+import Register from '@/pages/Register/register'
 import { createHashRouter, redirect } from 'react-router'
 
 export const router = createHashRouter([
@@ -9,12 +9,12 @@ export const router = createHashRouter([
       // 判断是否已经登录
       const isLogin = false
       if (!isLogin) {
-        return redirect('/login')
+        return redirect('/register')
       }
     }
   },
   {
-    path: '/login',
-    element: <Login />
+    path: '/register',
+    element: <Register />
   }
 ])
