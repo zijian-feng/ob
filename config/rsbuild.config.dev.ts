@@ -1,8 +1,9 @@
-import { mergeRsbuildConfig } from '@rsbuild/core';
-import { pluginSass } from '@rsbuild/plugin-sass';
-import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { readFileSync } from 'fs';
+
+import { pluginSass } from '@rsbuild/plugin-sass';
 import defaultConfig from './rsbuild.config.default';
+import { mergeRsbuildConfig } from '@rsbuild/core';
 
 export default mergeRsbuildConfig(defaultConfig, {
   mode: 'development',

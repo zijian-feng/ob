@@ -2,10 +2,11 @@ import logo from '@/assets/images/kpay-logo.png';
 import { Langs } from '@/constants';
 import i18n from '@/utils/i18n';
 import { DownOutlined, RightOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Dropdown, Flex, Form, Image, Input, Space, Typography } from 'antd';
+import { Button, Dropdown, Flex, Form, Image, Input, Space, Typography } from 'antd';
 import { withNamespaces } from 'react-i18next';
 import PhoneNumber from './components/PhoneNumber/phone_number';
 import styles from './register.module.scss';
+import Checkbox from '@/components/Checkbox';
 
 const { Title, Link } = Typography;
 const { t } = i18n;
@@ -29,7 +30,10 @@ function Register() {
             preview={false}
           />
         </div>
-        <trove-steps name="aaa" />
+        <Checkbox
+          label="测试复选框的能力"
+          value="test"
+        />
       </div>
       <Flex
         align="center"
@@ -65,7 +69,7 @@ function Register() {
           <Form.Item
             style={{ marginBottom: '20px' }}
           >
-            <Checkbox>
+            {/* <Checkbox>
               <Flex align="center" gap={4}>
                 <span>{t('register.agreement')}</span>
                 <Link>
@@ -76,7 +80,7 @@ function Register() {
                   《隱私政策》
                 </Link>
               </Flex>
-            </Checkbox>
+            </Checkbox> */}
           </Form.Item>
           <Form.Item>
             <Button

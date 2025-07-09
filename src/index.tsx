@@ -6,8 +6,9 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { componentSize } from './constants';
 import { router } from './router';
+import { install } from './components/Checkbox';
 
-import '@/components/Steps';
+install()
 
 const rootEl = document.getElementById('root');
 if (rootEl) {

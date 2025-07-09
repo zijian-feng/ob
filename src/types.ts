@@ -12,3 +12,8 @@ export interface Option {
 }
 
 export type Options = Option[];
+
+export interface CustomElementProps {
+  stylesheet?: string;
+  class?: string
+}

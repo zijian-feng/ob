@@ -1,23 +1,25 @@
+import type { CustomElementProps } from "@/types"
 import type { ComponentType } from "react"
 import { createRoot, type Root } from "react-dom/client"
 
-export const defineCustomElement = (
-  ReactComponent: ComponentType,
+export const defineCustomElement = <T extends CustomElementProps>(
+  ReactComponent: ComponentType<T>,
   observedAttributes: string[] = []
 ) => {
   return class extends HTMLElement {
-    private root: Root
+    private root?: Root
     constructor() {
       super()
-      this.attachShadow({ mode: 'open' })
-      this.root = createRoot(this.shadowRoot!)
     }
 
     static get observedAttributes() {
-      return observedAttributes
+      return [...observedAttributes, 'stylesheet']
     }
 
     connectedCallback() {
+      // 创建影子节点
+      this.attachShadow({ mode: 'open' })
+      this.root = createRoot(this.shadowRoot!)
       this.render()
     }
 
@@ -26,31 +28,34 @@ export const defineCustomElement = (
     }
 
     disconnectedCallback() {
-      this.root.unmount();
+      this.root?.unmount();
     }
 
-    getReactProps() {
-      return observedAttributes.reduce((props, attr) => {
-        const value = this.getAttribute(attr);
+    getReactProps(): T {
+      return [...observedAttributes, 'stylesheet'].reduce((props, attr) => {
+        const value = this.getAttribute(attr) as T[keyof T];
         if (!value) return props;
         try {
           // 尝试解析 JSON 值（用于对象/数组）
-          props[attr] = JSON.parse(value);
+          props[attr as unknown as keyof T] = JSON.parse(value as string);
         } catch {
           // 普通字符串值
-          props[attr] = value;
+          props[attr  as unknown as keyof T] = value;
         }
         return props;
-      }, {} as Record<string, unknown>);
+      }, {} as T);
     }
 
     render() {
-      console.log(this.getReactProps());
-      
+      if (!this.root) {
+        return;
+      }
+      const props = this.getReactProps()
+      const style = document.createElement('style')
+      style.textContent = props.stylesheet ?? ''
+      this.shadowRoot?.appendChild(style)
       this.root.render(
-        <ReactComponent
-          {...this.getReactProps()}
-        />
+        <ReactComponent {...props} />
       )
     }
   }
