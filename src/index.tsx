@@ -7,6 +7,7 @@ import { RouterProvider } from 'react-router';
 import { componentSize } from './constants';
 import { router } from './router';
 
+import '@/components/Steps';
 
 const rootEl = document.getElementById('root');
 if (rootEl) {

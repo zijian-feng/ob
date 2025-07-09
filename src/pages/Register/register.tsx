@@ -1,5 +1,4 @@
 import logo from '@/assets/images/kpay-logo.png';
-import postImage from '@/assets/images/post.png';
 import { Langs } from '@/constants';
 import i18n from '@/utils/i18n';
 import { DownOutlined, RightOutlined } from '@ant-design/icons';
@@ -10,6 +9,7 @@ import styles from './register.module.scss';
 
 const { Title, Link } = Typography;
 const { t } = i18n;
+
 
 function Register() {
   const handleFinish = (values: unknown) => {
@@ -29,17 +29,7 @@ function Register() {
             preview={false}
           />
         </div>
-        <Flex
-          align="center"
-          justify="center"
-          className={styles['post-image']}
-        >
-          <Image
-            width={675}
-            preview={false}
-            src={postImage}
-          />
-        </Flex>
+        <trove-steps name="aaa" />
       </div>
       <Flex
         align="center"
