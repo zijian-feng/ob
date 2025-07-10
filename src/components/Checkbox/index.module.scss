@@ -1,4 +1,13 @@
 .trove-checkbox {
   display: inline-flex;
   gap: $space-xs;
+  align-items: baseline;
+
+  &.is-card {
+    background-color: $color-primary-light;
+    border: thin solid $color-primary;
+    border-radius: 4px;
+    font-size: $text-sm;
+    padding: $space-sm $space-md;
+  }
 }

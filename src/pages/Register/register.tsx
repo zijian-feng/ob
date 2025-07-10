@@ -1,4 +1,5 @@
 import logo from '@/assets/images/kpay-logo.png';
+import Checkbox from '@/components/Checkbox';
 import { Langs } from '@/constants';
 import i18n from '@/utils/i18n';
 import { DownOutlined, RightOutlined } from '@ant-design/icons';
@@ -6,7 +7,6 @@ import { Button, Dropdown, Flex, Form, Image, Input, Space, Typography } from 'a
 import { withNamespaces } from 'react-i18next';
 import PhoneNumber from './components/PhoneNumber/phone_number';
 import styles from './register.module.scss';
-import Checkbox from '@/components/Checkbox';
 
 const { Title, Link } = Typography;
 const { t } = i18n;
@@ -31,8 +31,12 @@ function Register() {
           />
         </div>
         <Checkbox
-          label="测试复选框的能力"
+          label="务实敢为"
           value="test"
+          type="card"
+          checked
+          onChange={console.log}
+          extra="直接体验，深入事实；不自嗨，注重效果；能突破有担当，打破定式；尝试多种可能，快速迭代"
         />
       </div>
       <Flex

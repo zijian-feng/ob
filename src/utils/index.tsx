@@ -55,7 +55,7 @@ export const defineCustomElement = <T extends CustomElementProps>(
       style.textContent = props.stylesheet ?? ''
       this.shadowRoot?.appendChild(style)
       this.root.render(
-        <ReactComponent {...props} />
+        <ReactComponent {...props} _hostElement={this} />
       )
     }
   }
