@@ -31,13 +31,13 @@ function Register() {
           />
         </div>
         <Checkbox
-          label="务实敢为"
           value="test"
           type="card"
           checked
-          onChange={console.log}
           extra="直接体验，深入事实；不自嗨，注重效果；能突破有担当，打破定式；尝试多种可能，快速迭代"
-        />
+        >
+          务实敢为
+        </Checkbox>
       </div>
       <Flex
         align="center"
@@ -73,18 +73,6 @@ function Register() {
           <Form.Item
             style={{ marginBottom: '20px' }}
           >
-            {/* <Checkbox>
-              <Flex align="center" gap={4}>
-                <span>{t('register.agreement')}</span>
-                <Link>
-                  《用戶協議》
-                </Link>
-                <span>和</span>
-                <Link>
-                  《隱私政策》
-                </Link>
-              </Flex>
-            </Checkbox> */}
           </Form.Item>
           <Form.Item>
             <Button

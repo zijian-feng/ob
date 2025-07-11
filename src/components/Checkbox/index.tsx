@@ -1,19 +1,21 @@
 import useNamespace from '@/hooks'
 import { defineCustomElement } from "@/utils"
 import { useEffect, useRef, useState, type HTMLProps } from 'react'
-import styles from './index.module.scss'
+import stylesheets from './index.scss?inline'
 import type { CheckboxProps } from "./types"
 
 function ReactComponent(props: CheckboxProps) {
   const {
-    label,
+    children,
     extra,
     value,
     onChange,
     _hostElement,
+    type='default',
     checked: checkedProps,
   } = props
   const [checked, setChecked] = useState(!!checkedProps)
+  const ns = useNamespace({ type: 'checkbox', prefix: 'trove' })
 
   const handleChange: HTMLProps<HTMLInputElement>['onChange'] = () => {
     onChange?.(!checked)
@@ -34,32 +36,40 @@ function ReactComponent(props: CheckboxProps) {
   }
 
   return (
-    <>
+    <div
+      className={
+        ns.cls(
+          ns.name,
+          `is-${type}`,
+          checked && 'is-active'
+        )
+      }
+    >
       <input
-        id={label}
         value={value}
         type="checkbox"
         checked={checked}
         onChange={handleChange}
       />
       <div className="checkbox-label__container">
-        <label htmlFor={label}>{label}</label>
+        <label>
+          <slot>
+            {children}
+          </slot>
+        </label>
         {extra && (
-          <span className="checkbox-label__extra">{extra}</span>
+          <label className="checkbox-label__extra">{extra}</label>
         )}
       </div>
-    </>
+    </div>
   )
 }
 
 export default function Checkbox(props: CheckboxProps) {
   const {
     onChange,
-    type = 'default'
   } = props
   const ref = useRef<HTMLElement>(null)
-  const ns = useNamespace({ type: 'checkbox', prefix: 'trove' })
-
 
   useEffect(() => {
     ref.current?.addEventListener('change', (e) => {
@@ -71,58 +81,9 @@ export default function Checkbox(props: CheckboxProps) {
     <trove-checkbox
       {...props}
       ref={ref}
-      class={
-        ns.cls(
-          styles[ns.name],
-          styles[`is-${type}`]
-        )
-      }
-      onChange={() => console.log(1)}
       stylesheet={
         `
-          label {
-            user-select: none;
-
-            &:hover {
-              cursor: pointer;
-            }
-          }
-          input {
-            appearance: none;
-            width: 14px;
-            height: 14px;
-            outline: 1px solid rgb(133, 133, 133);
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: #fff;
-            margin: 0;
-            transition: .3s;
-            flex-shrink: 0;
-            &:checked {
-              background-color: #FF8500;
-              outline-color: #FF8500;
-              position: relative;
-
-              &::after {
-                content: '\\2714';
-                color: #FFFFFF;
-                font-size: 10px;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-              }
-            }
-          }
-          .checkbox-label__container {
-            display: flex;
-            flex-direction: column;
-            row-gap: 4px;
-
-            .checkbox-label__extra {
-              opacity: 0.62;
-            }
-          }
+          ${stylesheets}
         `
       }
     />
@@ -130,6 +91,6 @@ export default function Checkbox(props: CheckboxProps) {
 }
 
 export const install = () => {
-  const CustomCheckbox = defineCustomElement(ReactComponent, ['label', 'value', 'type', 'extra', 'checked'])
+  const CustomCheckbox = defineCustomElement(ReactComponent)
   customElements.define('trove-checkbox', CustomCheckbox)
 }

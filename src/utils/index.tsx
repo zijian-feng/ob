@@ -3,17 +3,12 @@ import type { ComponentType } from "react"
 import { createRoot, type Root } from "react-dom/client"
 
 export const defineCustomElement = <T extends CustomElementProps>(
-  ReactComponent: ComponentType<T>,
-  observedAttributes: string[] = []
+  ReactComponent: ComponentType<T>
 ) => {
   return class extends HTMLElement {
     private root?: Root
     constructor() {
       super()
-    }
-
-    static get observedAttributes() {
-      return [...observedAttributes, 'stylesheet']
     }
 
     connectedCallback() {
@@ -32,7 +27,8 @@ export const defineCustomElement = <T extends CustomElementProps>(
     }
 
     getReactProps(): T {
-      return [...observedAttributes, 'stylesheet'].reduce((props, attr) => {
+      const attributeNames = this.getAttributeNames()
+      return attributeNames.reduce((props, attr) => {
         const value = this.getAttribute(attr) as T[keyof T];
         if (!value) return props;
         try {

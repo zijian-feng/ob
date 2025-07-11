@@ -1,5 +1,5 @@
 import type { CustomElementProps } from "@/types"
-import type { Ref } from "react"
+import type { ReactNode, Ref } from "react"
 
 export interface CheckboxProps extends CustomElementProps {
   /**
@@ -11,13 +11,9 @@ export interface CheckboxProps extends CustomElementProps {
    */
   _hostElement?: HTMLElement
   /**
-   * 文本
-   */
-  label: string
-  /**
    * 选中值
    */
-  value: string
+  value?: string
   /**
    * 类型
    * @default default
@@ -31,6 +27,10 @@ export interface CheckboxProps extends CustomElementProps {
    * 选中状态
    */
   checked?: boolean
+  /**
+   * 子节点
+   */
+  children?: ReactNode
   /**
    * onChange
    */

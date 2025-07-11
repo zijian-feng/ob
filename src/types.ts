@@ -1,4 +1,5 @@
 import locales from '@/locales';
+import type { HTMLAttributes } from 'react';
 
 type LocaleType = typeof locales['zh-CN'] | typeof locales['zh-HK'] |  typeof locales['ja-JP'];
 
@@ -13,7 +14,6 @@ export interface Option {
 
 export type Options = Option[];
 
-export interface CustomElementProps {
+export interface CustomElementProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
   stylesheet?: string;
-  class?: string
 }

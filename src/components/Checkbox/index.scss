@@ -1,0 +1,64 @@
+.trove-checkbox {
+  display: inline-flex;
+  gap: $space-xs;
+  align-items: baseline;
+
+  &.is-card {
+    border-radius: 4px;
+    font-size: $text-sm;
+    border: thin solid transparent;
+    padding: $space-sm $space-md;
+  }
+
+  &.is-active {
+    border-color: $color-primary;
+    background-color: $color-primary-light;
+  }
+}
+
+label {
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  outline: 1px solid #d9d9d9;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
+  margin: 0;
+  transition: .3s;
+  flex-shrink: 0;
+
+  &:checked {
+    background-color: $color-primary;
+    outline-color: $color-primary;
+    position: relative;
+
+    &::after {
+      content: '\2714';
+      color: $color-white;
+      font-size: $text-2xs;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.checkbox-label__container {
+  display: flex;
+  flex-direction: column;
+  row-gap: $space-xxs;
+
+  .checkbox-label__extra {
+    opacity: 0.62;
+  }
+}
